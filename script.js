@@ -10,7 +10,7 @@ tl.fromTo(".menu", {y: -2000, duration: 0.8, display: "none", ease:'power1.out'}
   .fromTo('.li2',1, {x:"-100%"}, {x:"0%", ease: "expo.out", duration: 1.25}, "-=0.65")
   .fromTo('.li3',1,{x: "-100%"}, {x:"0%", ease: "expo.out", duration: 1.25}, "-=0.65")
   .fromTo('.li4',1,{x:"-100%"}, {x:"0%", ease: "expo.out", duration: 1.25}, "-=0.65")
-  .fromTo("video", {y: 2000, opacity: 0, duration: 1.25}, {y: 0, opacity: 1, duration: 1.25}, ">")
+  //.fromTo("video", {y: 2000, opacity: 0, duration: 1.25}, {y: 0, opacity: 1, duration: 1.25}, ">")
 
 $(".menu-click").click (function(){ tl.reversed( !tl.reversed() ) })
 
@@ -30,43 +30,35 @@ function playTL(){
 
 var video = document.querySelectorAll("video");
 var li = document.querySelectorAll("li");
+var myVideo;
 
 for(var i=0; i<li.length; i++){
     li[i].addEventListener("mouseenter", function(){
         if(this.classList.contains("li1")){
-            video[0].style.display = "block";
-            video[0].muted = true;
-            video[0].play();
+            myVideo = video[0];
         } else if(this.classList.contains("li2")){
-            video[1].style.display = "block";
-            video[1].muted = true;
-            video[1].play();
+            myVideo = video[1];
         } else if(this.classList.contains("li3")){
-            video[2].style.display = "block";
-            video[2].muted = true;
-            video[2].play();
+            myVideo = video[2];
         } else{
-            video[3].style.display = "block";
-            video[3].muted = true;
-            video[3].play();
+            myVideo = video[3];
         }
+        myVideo.style.display = "block";
+        myVideo.muted = true;
+        myVideo.play();
     })
-}
 
-for(var i=0; i<li.length; i++){
     li[i].addEventListener("mouseleave", function(){
         if(this.classList.contains("li1")){
-            video[0].play();
-            video[0].style.display = "none";
+            myVideo = video[0];
         } else if(this.classList.contains("li2")){
-            video[1].play();
-            video[1].style.display = "none";
+            myVideo = video[1];
         } else if(this.classList.contains("li3")){
-            video[2].play();
-            video[2].style.display = "none";
+            myVideo = video[2];
         } else{
-            video[3].play();
-            video[3].style.display = "none";
+            myVideo = video[3];
         }
+        myVideo.style.display = "none";
+        myVideo.pause();
     })
 }
